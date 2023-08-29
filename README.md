@@ -1,5 +1,8 @@
 # Incubyte-Chandrayaan3
 
+****Note****
+****I have assummed top of the Lander for North, South, West and East direction as Up direction. And for Up and Down direction have assumed North as the top for initial condition.****
+
 Before You Begin
 A Software Craftsperson at Incubyte is a person who has a strong commitment to the craft of software development. Someone who is passionate about software, knows her/his tools well and is able to use them effectively to create carefully crafted software. Ultimately, a person who has a strong sense of what it is they are doing and is self-motivated to learn and grow.
 
