@@ -59,7 +59,7 @@ public class Chandrayaan3 {
 
     //Function to check validity of command character
     private static boolean checkValidCommand(char c){
-        return c == 'f' || c == 'r' || c == 'u' || c == 'b' || c == 'l';
+        return c == 'f' || c == 'r' || c == 'u' || c == 'b' || c == 'l' || c=='d';
     }
 
     //Function to check validity of command character
@@ -70,11 +70,13 @@ public class Chandrayaan3 {
 
     public static void main(String[] args) {
         input();
+        Lander lander=new Lander(direction, charArray, intArray);
+        lander.execute();
     }
 }
 
 class Lander{
-    char face, top, bottom, left, right;
+    char face, top, bottom, left, right, opp;
     char[] commands;
     int [] position;
     
@@ -89,6 +91,7 @@ class Lander{
         else{
             top='U';
         }
+        setDirections(top, face);
     }
 
     void execute(){
@@ -98,14 +101,228 @@ class Lander{
                 case 'b': move(c); break;
                 default: turn(c); break;
             }
+            System.out.println("Current Command: "+c);
+            show();
         }
     }
 
-    void move(char c){
+    void show(){
+        System.out.println("Face of Lander: "+face);
+        System.out.println("Top of Lander: "+top);
+        System.out.println("Opp: "+opp);
+        System.out.println("Co-ordinates of Lander:");
+        for(int i=0; i<3; i++){
+            System.out.print(position[i]+" ");
+        }
+        System.out.println();
+    }
 
+    void move(char c){
+        if(c=='f'){
+            switch(face){
+                case 'N': position[1]++; break;
+                case 'S': position[1]--; break;
+                case 'E': position[0]++; break;
+                case 'W': position[0]--; break;
+                case 'D': position[2]--; break;
+                case 'U': position[2]++; break;
+            }
+        }
+        else{
+            switch(face){
+                case 'N': position[1]--; break;
+                case 'S': position[1]++; break;
+                case 'E': position[0]--; break;
+                case 'W': position[0]++; break;
+                case 'D': position[2]++; break;
+                case 'U': position[2]--; break;
+            }
+        }
     }
 
     void turn(char c){
+        switch(c){
+            case 'l':
+                setDirections(top, left);
+                break;
+            case 'r': 
+                setDirections(top, right);
+                break;
+            case 'u':
+                setDirections(opp, top);;
+                break;
+            case 'd':
+                setDirections(face, bottom);
+                break;
+        }
+    }
 
+
+    void setDirections(char top, char face){
+        this.top=top;
+        this.face=face;
+        switch(face){
+            case 'N':
+                opp='S';
+                switch (top) {
+                    case 'U':
+                        left='W';
+                        right='E';
+                        bottom='D';
+                        break;
+                    case 'D':
+                        left='E';
+                        right='W';
+                         bottom='U';
+                        break;
+                    case 'W':
+                        left='D';
+                        right='U';
+                         bottom='E';
+                        break;
+                    case 'E':
+                        left='U';
+                        right='D';
+                         bottom='W';
+                        break;
+                    default:
+                        break;
+                };
+                break;
+            case 'S': 
+                opp='N';
+                switch (top) {
+                    case 'D':
+                        left='W';
+                        right='E';
+                         bottom='U';
+                        break;
+                    case 'U':
+                        left='E';
+                        right='W';
+                         bottom='D';
+                        break;
+                    case 'E':
+                        left='D';
+                        right='U';
+                         bottom='W';
+                        break;
+                    case 'W':
+                        left='U';
+                        right='D';
+                         bottom='E';
+                        break;
+                    default:
+                        break;
+                };
+                break;
+            case 'E': 
+            opp='W';
+            switch (top) {
+                    case 'U':
+                        left='N';
+                        right='S';
+                         bottom='D';
+                        break;
+                    case 'D':
+                        left='S';
+                        right='N';
+                         bottom='U';
+                        break;
+                    case 'N':
+                        left='D';
+                        right='U';
+                         bottom='S';
+                        break;
+                    case 'S':
+                        left='U';
+                        right='D';
+                         bottom='N';
+                        break;
+                    default:
+                        break;
+                };
+                break;
+            case 'W': opp='E';
+            switch (top) {
+                    case 'U':
+                        left='S';
+                        right='N';
+                         bottom='D';
+                        break;
+                    case 'D':
+                        left='N';
+                        right='S';
+                         bottom='U';
+                        break;
+                    case 'S':
+                        left='D';
+                        right='U';
+                         bottom='N';
+                        break;
+                    case 'N':
+                        left='U';
+                        right='D';
+                         bottom='S';
+                        break;
+                    default:
+                        break;
+                };
+                break;
+            
+            case 'U': opp='D';
+            switch (top) {
+                    case 'S':
+                        left='W';
+                        right='E';
+                         bottom='N';
+                        break;
+                    case 'N':
+                        left='E';
+                        right='W';
+                         bottom='S';
+                        break;
+                    case 'W':
+                        left='N';
+                        right='S';
+                         bottom='E';
+                        break;
+                    case 'E':
+                        left='S';
+                        right='N';
+                         bottom='W';
+                        break;
+                    default:
+                        break;
+                };
+                break;
+            
+                case 'D': opp='U';
+                switch (top) {
+                    case 'N':
+                        left='W';
+                        right='E';
+                         bottom='S';
+                        break;
+                    case 'S':
+                        left='E';
+                        right='W';
+                         bottom='N';
+                        break;
+                    case 'E':
+                        left='N';
+                        right='S';
+                         bottom='W';
+                        break;
+                    case 'W':
+                        left='S';
+                        right='N';
+                         bottom='E';
+                        break;
+                    default:
+                        break;
+                };
+                break;
+        }
     }
 }
