@@ -67,7 +67,45 @@ public class Chandrayaan3 {
         return c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == 'U' || c=='D';
     }
 
+
     public static void main(String[] args) {
         input();
+    }
+}
+
+class Lander{
+    char face, top, bottom, left, right;
+    char[] commands;
+    int [] position;
+    
+    Lander(char face, char[] commands, int[] position){
+        this.face=face;
+        this.commands=commands;
+        this.position=position;
+
+        if(face=='U' || face=='D'){
+        top='N';
+        }
+        else{
+            top='U';
+        }
+    }
+
+    void execute(){
+        for(char c: commands){
+            switch(c){
+                case 'f': move(c); break;
+                case 'b': move(c); break;
+                default: turn(c); break;
+            }
+        }
+    }
+
+    void move(char c){
+
+    }
+
+    void turn(char c){
+
     }
 }
