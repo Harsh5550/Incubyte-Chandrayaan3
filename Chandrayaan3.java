@@ -108,12 +108,8 @@ class Lander{
 
     void show(){
         System.out.println("Face of Lander: "+face);
-        System.out.println("Top of Lander: "+top);
-        System.out.println("Opp: "+opp);
         System.out.println("Co-ordinates of Lander:");
-        for(int i=0; i<3; i++){
-            System.out.print(position[i]+" ");
-        }
+        System.out.print("("+position[0]+","+position[1]+","+position[2]+")");
         System.out.println();
     }
 
