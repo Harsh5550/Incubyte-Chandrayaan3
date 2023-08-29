@@ -2,9 +2,9 @@ import java.util.Scanner;
 
 public class Chandrayaan3 {
 
-    private static char[] charArray;
-    private static int[] intArray;
-    private static char direction;
+    public static char[] charArray;
+    public static int[] intArray;
+    public static char direction;
 
     //Function to take input from user
     public static void input(){
