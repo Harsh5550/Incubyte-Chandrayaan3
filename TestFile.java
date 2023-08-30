@@ -1,8 +1,9 @@
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import java.io.InputStream;
 
 import org.junit.Test;
 
@@ -11,18 +12,21 @@ public class TestFile {
     private static Input input=new Input();
     private static ByteArrayOutputStream outputStream= new ByteArrayOutputStream();
 
+    //Testing if direction is read successfully
     @Test
-    public void testValidDirection() {
-
-        // Simulate valid input for readDirection
-        String simulatedInput = "N";
-        System.setIn(new java.io.ByteArrayInputStream(simulatedInput.getBytes()));
-
+    public void testReadDirection() {
+        String simulatedInput = "N\n"; // Provide a valid direction
+        InputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(inputStream);
+        
+        Input input = new Input();
         input.readDirection();
-        assertEquals('N', Variables.direction);
 
+        // Verify that the direction was set correctly
+        assertEquals('N', Variables.direction);
     }
 
+    //Testing if direction is invalid
     @Test
     public void testInvalidDirection() {
         String simulatedInput = "X\n";
@@ -35,6 +39,7 @@ public class TestFile {
         assertEquals("Invalid Direction", output);
     }
 
+    //Testing if initial coordinates are valid
     @Test
     public void testValidInitialCoordinates() {
         // Simulate valid input for readInitialCoordinates
@@ -45,6 +50,7 @@ public class TestFile {
         assertArrayEquals(new int[]{1, 2, 3}, Variables.intArray);
     }
 
+    //Testing if commands are valid
     @Test
     public void testValidCommands() {
         // Simulate valid input for readCommands
@@ -55,6 +61,7 @@ public class TestFile {
         assertArrayEquals(new char[]{'f', 'r', 'u', 'b'}, Variables.charArray);
     }
 
+    //Testing if commands are invalid
     @Test
     public void testInvalidCommand() {
         String simulatedInput = "5\nX\nf\nr\nu\nb\n";
