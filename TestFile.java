@@ -1,26 +1,70 @@
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import org.junit.Test;
 
 public class TestFile {
 
-    // @Test
-    // public void testCommandInput(){
-    //     char [] expected={'f', 'b', 'r', 'l', 'u', 'd'};
-    //     Chandrayaan3.readCommands();
-    //     assertArrayEquals(Chandrayaan3.charArray, expected);
-    // }
+    private static Input input=new Input();
+    private static ByteArrayOutputStream outputStream= new ByteArrayOutputStream();
 
-    // @Test
-    // public void testInitialCoordinates(){
-    //     Chandrayaan3.readInitialCoordinates();
-    // }
+    @Test
+    public void testValidDirection() {
 
-    // @Test
-    // public void testDirection(){
-    //     Chandrayaan3.readDirection();
-    // }
+        // Simulate valid input for readDirection
+        String simulatedInput = "N";
+        System.setIn(new java.io.ByteArrayInputStream(simulatedInput.getBytes()));
+
+        input.readDirection();
+        assertEquals('N', Variables.direction);
+
+    }
+
+    @Test
+    public void testInvalidDirection() {
+        String simulatedInput = "X\n";
+        System.setIn(new java.io.ByteArrayInputStream(simulatedInput.getBytes()));
+
+        input.readDirection();
+
+        // Capture the output and assert the expected error message
+        String output = outputStream.toString().trim();
+        assertEquals("Invalid Direction", output);
+    }
+
+    @Test
+    public void testValidInitialCoordinates() {
+        // Simulate valid input for readInitialCoordinates
+        String simulatedInput = "1\n2\n3\n";
+        System.setIn(new java.io.ByteArrayInputStream(simulatedInput.getBytes()));
+
+        input.readInitialCoordinates();
+        assertArrayEquals(new int[]{1, 2, 3}, Variables.intArray);
+    }
+
+    @Test
+    public void testValidCommands() {
+        // Simulate valid input for readCommands
+        String simulatedInput = "4\nf\nr\nu\nb\n";
+        System.setIn(new java.io.ByteArrayInputStream(simulatedInput.getBytes()));
+
+        input.readCommands();
+        assertArrayEquals(new char[]{'f', 'r', 'u', 'b'}, Variables.charArray);
+    }
+
+    @Test
+    public void testInvalidCommand() {
+        String simulatedInput = "5\nX\nf\nr\nu\nb\n";
+        System.setIn(new java.io.ByteArrayInputStream(simulatedInput.getBytes()));
+
+        input.readCommands();
+        String output = outputStream.toString().trim();
+        assertEquals("Invalid Command", output);
+    }
+
 
     //Testing constructor for Lander Class
     @Test
@@ -117,15 +161,15 @@ public class TestFile {
     //Testing full execution of Lander Class
     @Test
     public void testFullExecution() {
-        char[] commands = {'f', 'r', 'f', 'b', 'l'};
+        char[] commands = {'f', 'r', 'u', 'b', 'l'};
         int[] position = {0, 0, 0};
         Lander lander = new Lander('N', commands, position);
         lander.execute();
-        int[] expectedPosition = {1, 1, 1};
+        int[] expectedPosition = {0, 1, -1};
         assertEquals(expectedPosition[0], lander.position[0]);
         assertEquals(expectedPosition[1], lander.position[1]);
         assertEquals(expectedPosition[2], lander.position[2]);
-        assertEquals('E', lander.face);
+        assertEquals('N', lander.face);
     }
 
 }

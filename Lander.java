@@ -32,7 +32,7 @@ public class Lander{
     void show(){
         System.out.println("Face of Lander: "+face);
         System.out.println("Co-ordinates of Lander:");
-        System.out.print("("+position[0]+","+position[1]+","+position[2]+")");
+        System.out.print("{"+position[0]+","+position[1]+","+position[2]+"}");
         System.out.println();
     }
 
