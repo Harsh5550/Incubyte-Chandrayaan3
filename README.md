@@ -1,19 +1,7 @@
 # Incubyte-Chandrayaan3
 
 ****Note: I have assummed top of the Lander for 'North', 'South', 'West' and 'East' facing direction as 'Up' direction. And for 'Up' and 'Down' facing direction have assumed 'North' as the top for initial condition.****
-
 ****Also for North-South Axis +1 is granted if Lander moves forwards towards north and -1 for otherwise. Similiarly for East +1 and west -1, up +1 and down -1.****
-
-Before You Begin
-A Software Craftsperson at Incubyte is a person who has a strong commitment to the craft of software development. Someone who is passionate about software, knows her/his tools well and is able to use them effectively to create carefully crafted software. Ultimately, a person who has a strong sense of what it is they are doing and is self-motivated to learn and grow.
-
-TDD is a core practice for all of us at Incubyte. We strongly believe that well written software, is a lot more valuable for the business and end users, as compared to software that is hacked together (but works!).
-
-Through this assessment, we want to evaluate how readable and testable your code is. We want to see the Software Craftsperson in you.
-
-As software developers, searching the internet is something of a necessity and is vital tool for being effective problem solvers. We encourage you to Google away! You can also visit our inspiration page to find some useful talks and references that will help you sail through this assessment.
-
-With that, let’s jump right in! Follow the instructions below, take your time to do it well and send us your kata once you’re happy with what you’ve done. Make sure you follow TDD throughout this assessment!
 
 Problem Statement
 Chandrayaan 3 Lunar Craft: Galactic Space Craft Control
@@ -55,10 +43,3 @@ Your task is to design the program that enables Chandrayaan 3 to execute these c
 Make sure to take an incremental approach and show it in the commits
 Keep your code clean, readable, and modularized
 Do not throw exceptions/handle cases for invalid arguments
-Things To Keep In Mind
-Host your solution on a public GitHub/GitLab repository
-Follow best practices for TDD. Watch this video to understand TDD better
-Commit your changes frequently to show how your code evolves with every step of TDD
-We encourage you to use the programming language and tools you feel most comfortable with
-Do not rush, take your time, we want to see your best work!
-Send us the link to your repo once you’re happy with what you’ve done
